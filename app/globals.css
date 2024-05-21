@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+} */
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-end-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+
+.loader {
+  position: relative;
+  margin: 0 auto;
+  width: 50px;
+  height: 50px;
+}
+
+.circular {
+  animation: rotate 2s linear infinite;
+  height: 100%;
+  transform-origin: center center;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.path {
+  stroke:rgb(229 231 235 );
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  /* color 6s ease-in-out infinite; */
+  stroke-linecap: round;
+}
+.input::placeholder {
+  transition: color 0.4s ease-in-out;
+}
+
+@keyframes rotate {
+  100% {
+      transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+      stroke-dasharray: 1, 200;
+      stroke-dashoffset: 0;
+  }
+  50% {
+      stroke-dasharray: 89, 200;
+      stroke-dashoffset: -35px;
+  }
+  100% {
+      stroke-dasharray: 89, 200;
+      stroke-dashoffset: -124px;
+  }
+}
+
+@keyframes color {
+  100%, 0% {
+      stroke: #FFF;
+  }
+  40% {
+      stroke: #2563EB;
+  }
+  66% {
+      stroke: #FFF;
+  }
+  80%, 90% {
+      stroke: #2563EB;
+  }
+}
+
+.content__overlay {
+  z-index: 90;
+	background: #3B3480;
+	position: fixed;
+	top: calc(50% - 75vmax);
+	left: calc(50% - 75vmax);
+	width: 150vmax;
+	height: 150vmax;
+	pointer-events: none;
+	will-change: transform;
+}
+
+.overlay__inner {
+	background: #827AC4;
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+
+ .content__overlay {
+	transform: rotate(-45deg);
+	background: transparent;
+}
+
+.overlay {
+	position: fixed;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+	z-index: 1000;
+	pointer-events: none;
+	width: 200vw;
+	height: 200vh;
+  transform: rotate(45deg);
+}
+@media screen and (max-width: 768px) {
+  .overlay {
+    width: 300vw;
+    height: 150vh;
+  }
+}
+
+.overlay__path {
+  fill:#2563EB;
+}
